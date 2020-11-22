@@ -89,8 +89,7 @@ class DataGenerator(object):
         label_path = self.path + os.sep + label_filename
 
         image = tf.io.read_file(image_path)
-        # with tf.io.gfile.GFile(image_path, "r") as reader:
-        #     image = reader.read()
+
         image = tf.image.decode_jpeg(image)
         image = tf.cast(image, dtype) / 255.0
 
@@ -101,8 +100,7 @@ class DataGenerator(object):
         image = tf.reshape(patches, [-1, self.ONE_SHOT_SIZE[0], self.ONE_SHOT_SIZE[1], 3])
 
         label = tf.io.read_file(label_path)
-        # with tf.io.gfile.GFile(label_path, "r") as reader:
-        #     label = reader.read()
+
         label = tf.image.decode_jpeg(label)
 
         mask = tf.zeros([self.RAW_IMAGE_SIZE[0], self.RAW_IMAGE_SIZE[1]], tf.uint8)

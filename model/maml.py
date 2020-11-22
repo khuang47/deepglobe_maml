@@ -228,10 +228,8 @@ def training(meta_train_iterations, meta_batch_size, k_support, k_query, num_inn
                 with meta_metric_writer.as_default():
                     tf.summary.scalar('eval accuracy', acc_valid, step=itr)
 
-
                 with tf.device('/CPU:0'):
                     construct_predicted_label_batch(itr, ids_valid, query_indices_valid, label_query_valid, pred_valid, job_dir, storage_client)
-
 
                 with meta_loss_summary_writer.as_default():
                     tf.summary.scalar('eval-meta-loss', meta_loss_valid, step=itr)
